@@ -17,30 +17,35 @@ class _PieChartItemState extends State<PieChartItem> {
   void initState() {
     super.initState();
     PieChartSectionData food = PieChartSectionData(
-        color: Colors.red,
-        value: 28,
-        radius: 50,
-        titleStyle: TextStyle(fontSize: 20, color: Colors.black));
+      color: Colors.red,
+      value: 210,
+      radius: 50,
+      showTitle: false,
+    );
     PieChartSectionData entertainment = PieChartSectionData(
-        color: Colors.blue,
-        value: 28,
-        radius: 50,
-        titleStyle: TextStyle(fontSize: 20, color: Colors.black));
+      color: Colors.blue,
+      value: 90,
+      radius: 50,
+      showTitle: false,
+    );
     PieChartSectionData transportation = PieChartSectionData(
-        color: Colors.yellow,
-        value: 28,
-        radius: 50,
-        titleStyle: TextStyle(fontSize: 20, color: Colors.black));
+      color: Colors.yellow,
+      value: 70,
+      radius: 50,
+      showTitle: false,
+    );
     PieChartSectionData personal = PieChartSectionData(
-        color: Colors.green,
-        value: 50,
-        radius: 50,
-        titleStyle: TextStyle(fontSize: 20, color: Colors.black));
+      color: Colors.green,
+      value: 380,
+      radius: 50,
+      showTitle: false,
+    );
     PieChartSectionData other = PieChartSectionData(
-        color: Colors.blueGrey,
-        value: 28,
-        radius: 50,
-        titleStyle: TextStyle(fontSize: 20, color: Colors.black));
+      color: Colors.blueGrey,
+      value: 50,
+      radius: 50,
+      showTitle: false,
+    );
     _sections = [food, entertainment, transportation, personal, other];
   }
 

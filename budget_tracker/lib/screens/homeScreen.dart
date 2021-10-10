@@ -1,6 +1,9 @@
 import 'package:budget_tracker/expenses/expenses_view.dart';
+import 'package:budget_tracker/models/data/dataList.dart';
 import 'package:budget_tracker/models/item.dart';
+import 'package:budget_tracker/models/itemList.dart';
 import 'package:budget_tracker/utils/database_helper.dart';
+import 'package:budget_tracker/widget/listWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:sqflite/sqflite.dart';
@@ -15,10 +18,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final listKey = GlobalKey<AnimatedListState>();
+
   int count = 0;
   DatabaseHelper databaseHelper = DatabaseHelper();
   List<Item>? itemList;
 
+  final List<ListItem> items = List.from(listItems);
   @override
   Widget build(BuildContext context) {
 // ignore: unnecessary_null_comparison
@@ -61,21 +67,45 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: ExpensesView(),
                   )),
               Positioned(
-                  //top: 280,
-                  top: height * 0.38,
-                  //height: height * 0.88,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: height * 0.35,
-                    // width: 200.0,
-                    child: getItemList(),
-                  )),
+                //top: 280,
+                top: height * 0.38,
+                //height: height * 0.88,
+                left: 0,
+                right: 0,
+                child: Container(
+                  alignment: Alignment.center,
+                  height: height * 0.35,
+                  // width: 200.0,
+                  // child: getItemList(),
+                  child: AnimatedList(
+                    key: listKey,
+                    initialItemCount: items.length,
+                    itemBuilder: (context, index, animation) => ListItemWidget(
+                      item: items[index],
+                      animation: animation,
+                      onClicked: () => removeItem(index),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  void removeItem(int index) {
+    final removedItem = items[index];
+    items.removeAt(index);
+    listKey.currentState!.removeItem(
+      index,
+      (context, animation) => ListItemWidget(
+        item: removedItem,
+        animation: animation,
+        onClicked: () {},
+      ),
+      duration: Duration(milliseconds: 600),
     );
   }
 

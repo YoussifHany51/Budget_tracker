@@ -26,8 +26,8 @@ class AddItemState extends State<AddItem> {
   Item? item;
   String appBartitle;
 
-  // String title = '';
-  // String price = '';
+  String _title = '';
+  String _price = '';
   // DateTime _date = DateTime.now();
 
   //TextEditingController dateController = TextEditingController();
@@ -82,11 +82,11 @@ class AddItemState extends State<AddItem> {
                                   fontWeight: FontWeight.bold)),
                           Padding(
                             padding: EdgeInsets.only(top: 20, bottom: 20),
-                            child: TextField(
-                              controller: titleController,
-                              onChanged: (value) {
-                                updateTitle();
-                              },
+                            child: TextFormField(
+                              // controller: titleController,
+                              // onChanged: (value) {
+                              //   updateTitle();
+                              // },
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
                                   labelText: 'Title',
@@ -99,11 +99,11 @@ class AddItemState extends State<AddItem> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 20, bottom: 20),
-                            child: TextField(
-                              controller: priceController,
-                              onChanged: (value) {
-                                updatePrice();
-                              },
+                            child: TextFormField(
+                              //controller: priceController,
+                              // onChanged: (value) {
+                              //   updatePrice();
+                              // },
                               textInputAction: TextInputAction.done,
                               decoration: InputDecoration(
                                   labelText: 'Price',
@@ -181,10 +181,11 @@ class AddItemState extends State<AddItem> {
                                     color: Colors.black, fontSize: 20),
                               ),
                               onPressed: () {
-                                setState(() {
-                                  debugPrint('button clicked');
-                                  _save();
-                                });
+                                Navigator.pop(context);
+                                // setState(() {
+                                //   debugPrint('button clicked');
+                                //   _save();
+                                // });
                               },
                             ),
                           ),
